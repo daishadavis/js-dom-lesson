@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  margin: 0;
+  padding: 40px 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+main {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 4px;
+}
+
+#message {
+  color: #64748b;
+  margin-top: 0;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.card h2 {
+  font-size: 1rem;
+  margin: 0 0 12px;
+}
+
+.btn {
+  font: inherit;
+  background: #6d28d9;
+  color: white;
+  border: 2px solid #6d28d9;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #5b21b6;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #6d28d9;
+}
+
+.btn-outline:hover {
+  background: #ede9fe;
+}
+
+.box {
+  width: 100%;
+  height: 80px;
+  border-radius: 8px;
+  background: #cbd5e1;
+  margin-bottom: 12px;
+  transition: background 0.3s;
+}
+
+.count {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Added to <body> by JavaScript in exercise B */
+body.dark {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+body.dark .card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+body.dark #message {
+  color: #94a3b8;
+}

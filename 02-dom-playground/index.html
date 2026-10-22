@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02 · DOM Playground</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1 id="title">DOM Playground 🛝</h1>
+    <p id="message">JavaScript hasn't touched this page yet.</p>
+
+    <!-- Exercise A: change text -->
+    <section class="card">
+      <h2>A · Change the text</h2>
+      <button id="change-text-btn" class="btn">Change the message</button>
+    </section>
+
+    <!-- Exercise B: change styles -->
+    <section class="card">
+      <h2>B · Change the style</h2>
+      <div id="color-box" class="box"></div>
+      <button id="color-btn" class="btn">Change color</button>
+      <button id="theme-btn" class="btn btn-outline">Toggle dark mode</button>
+    </section>
+
+    <!-- Exercise C: click counter -->
+    <section class="card">
+      <h2>C · Click counter</h2>
+      <p class="count" id="count">0</p>
+      <div class="row">
+        <button id="minus-btn" class="btn">−</button>
+        <button id="reset-btn" class="btn btn-outline">Reset</button>
+        <button id="plus-btn" class="btn">+</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
