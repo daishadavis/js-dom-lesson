@@ -1,43 +1,30 @@
 // =============================================
-// 02 · DOM Playground
-// The DOM is the browser's "live map" of your HTML.
-// JavaScript can FIND things on the map, CHANGE them,
-// and LISTEN for things the user does.
+// 02 · DOM Playground — SOLUTION
 // =============================================
 
 // ---------------------------------------------
 // STEP 0: Find elements on the page
-// document.querySelector("css-selector") returns the FIRST match.
-// "#something" finds by id, ".something" finds by class.
 // ---------------------------------------------
 
 const title = document.querySelector("#title");
-console.log(title); // 👀 Try it! Hover the logged element in the console.
+console.log(title);
 
-// TODO: Grab the <p id="message"> element and store it in a const called `message`.
+const message = document.querySelector("#message");
 
 
 // ---------------------------------------------
 // A · CHANGE THE TEXT
-// element.textContent = "new words" replaces what an element says.
 // ---------------------------------------------
 
 const changeTextBtn = document.querySelector("#change-text-btn");
 
-// TODO: When changeTextBtn is clicked, change message's text to
-// "JavaScript was here! ✨"
-// Hint:
-// changeTextBtn.addEventListener("click", function () {
-//   ...your code here...
-// });
-
+changeTextBtn.addEventListener("click", function () {
+  message.textContent = "JavaScript was here! ✨";
+});
 
 
 // ---------------------------------------------
 // B · CHANGE THE STYLE
-// element.style.someProperty = "value" changes one CSS property.
-// element.classList.toggle("name") adds a class if it's missing,
-// removes it if it's there. (Like a light switch!)
 // ---------------------------------------------
 
 const colorBox = document.querySelector("#color-box");
@@ -46,19 +33,18 @@ const themeBtn = document.querySelector("#theme-btn");
 
 const colors = ["#f472b6", "#60a5fa", "#34d399", "#fbbf24", "#a78bfa"];
 
-// TODO: When colorBtn is clicked, set colorBox's background color
-// to a RANDOM color from the `colors` array.
-// Hint: Math.floor(Math.random() * colors.length) gives a random index.
-// Hint: colorBox.style.backgroundColor = ...
+colorBtn.addEventListener("click", function () {
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  colorBox.style.backgroundColor = colors[randomIndex];
+});
 
-
-// TODO: When themeBtn is clicked, toggle the class "dark" on document.body.
-
+themeBtn.addEventListener("click", function () {
+  document.body.classList.toggle("dark");
+});
 
 
 // ---------------------------------------------
 // C · CLICK COUNTER
-// Combine everything: a variable that changes + updating the page.
 // ---------------------------------------------
 
 const countDisplay = document.querySelector("#count");
@@ -68,18 +54,28 @@ const resetBtn = document.querySelector("#reset-btn");
 
 let count = 0;
 
-// TODO: Write a function called `updateDisplay` that sets
-// countDisplay's textContent to the current `count`.
+function updateDisplay() {
+  countDisplay.textContent = count;
 
+  // BONUS: red when negative
+  if (count < 0) {
+    countDisplay.style.color = "#dc2626";
+  } else {
+    countDisplay.style.color = "";
+  }
+}
 
-// TODO: When plusBtn is clicked: add 1 to count, then call updateDisplay().
+plusBtn.addEventListener("click", function () {
+  count = count + 1;
+  updateDisplay();
+});
 
+minusBtn.addEventListener("click", function () {
+  count = count - 1;
+  updateDisplay();
+});
 
-// TODO: When minusBtn is clicked: subtract 1 from count, then call updateDisplay().
-
-
-// TODO: When resetBtn is clicked: set count back to 0, then call updateDisplay().
-
-
-// BONUS: Make the number turn red when count is below 0.
-// Hint: inside updateDisplay, use an if/else and countDisplay.style.color
+resetBtn.addEventListener("click", function () {
+  count = 0;
+  updateDisplay();
+});

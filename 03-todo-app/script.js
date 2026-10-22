@@ -1,7 +1,5 @@
 // =============================================
-// 03 · To-Do App
-// Put it all together: find elements, listen for events,
-// CREATE new elements, and update the page.
+// 03 · To-Do App — SOLUTION
 // =============================================
 
 // ---------------------------------------------
@@ -16,68 +14,55 @@ const countText = document.querySelector("#todo-count");
 
 // ---------------------------------------------
 // STEP 2: Listen for the form being submitted
-// A form "submits" when you click its button OR press Enter.
-// By default the page reloads — event.preventDefault() stops that.
 // ---------------------------------------------
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  // TODO: Get what the user typed. Hint: input.value
-  // .trim() removes extra spaces from the start and end.
-  const text = "";
+  const text = input.value.trim();
 
-  // TODO: If text is empty, stop here (don't add a blank to-do).
-  // Hint: if (text === "") { return; }
+  if (text === "") {
+    return;
+  }
 
+  addTodo(text);
 
-  // TODO: Call addTodo(text)
-
-
-  // TODO: Clear the input box so it's ready for the next one.
-  // Hint: set input.value to an empty string
-
+  input.value = "";
+  input.focus();
 });
 
 
 // ---------------------------------------------
 // STEP 3: Build a new to-do and put it on the page
-// We want each to-do to look like this in the HTML:
-//
-//   <li class="todo-item">
-//     <span class="todo-text">Buy milk</span>
-//     <button class="delete-btn">🗑️</button>
-//   </li>
 // ---------------------------------------------
 
 function addTodo(text) {
-  // TODO: Create an <li> and give it the class "todo-item"
-  // Hint: document.createElement("li") and li.classList.add(...)
+  const li = document.createElement("li");
+  li.classList.add("todo-item");
 
+  const span = document.createElement("span");
+  span.classList.add("todo-text");
+  span.textContent = text;
 
-  // TODO: Create a <span>, give it the class "todo-text",
-  // and set its textContent to `text`
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.textContent = "🗑️";
 
-
-  // TODO: Create a <button>, give it the class "delete-btn",
-  // and set its textContent to "🗑️"
-
-
-  // TODO: Put the span and button INSIDE the li,
-  // then put the li inside the list.
-  // Hint: parent.appendChild(child)
-
+  li.appendChild(span);
+  li.appendChild(deleteBtn);
+  list.appendChild(li);
 
   // ---- STEP 4: Make it interactive ----
 
-  // TODO: When the span is clicked, toggle the class "done" on the li.
-  // Then call updateCount().
+  span.addEventListener("click", function () {
+    li.classList.toggle("done");
+    updateCount();
+  });
 
-
-  // TODO: When the delete button is clicked, remove the li.
-  // Hint: li.remove()
-  // Then call updateCount().
-
+  deleteBtn.addEventListener("click", function () {
+    li.remove();
+    updateCount();
+  });
 
   updateCount();
 }
@@ -88,18 +73,11 @@ function addTodo(text) {
 // ---------------------------------------------
 
 function updateCount() {
-  // TODO: Count the to-dos that are NOT done.
-  // Hint: document.querySelectorAll(".todo-item:not(.done)").length
-  const remaining = 0;
+  const remaining = document.querySelectorAll(".todo-item:not(.done)").length;
 
-  // TODO: Update countText. Bonus: say "1 task left" (not "1 tasks left").
-  countText.textContent = remaining + " tasks left";
+  if (remaining === 1) {
+    countText.textContent = "1 task left";
+  } else {
+    countText.textContent = remaining + " tasks left";
+  }
 }
-
-
-// ---------------------------------------------
-// STRETCH GOALS (see README.md)
-// 1. Add a "Clear completed" button
-// 2. Show a message when the list is empty
-// 3. Save to-dos in localStorage so they survive a refresh
-// ---------------------------------------------
